@@ -8,8 +8,7 @@ on:
 jobs:
   run_command:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+
 
       - name: Run a command
         run: |
