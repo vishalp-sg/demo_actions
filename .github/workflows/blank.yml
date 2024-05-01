@@ -1,31 +1,37 @@
-name: SonarQube Analysis
+name: SonarQube Scan
 
 on:
   push:
     branches:
-      - main
+      - main  # Adjust branch name as needed
+  pull_request:
+    branches:
+      - main  # Adjust branch name as needed
 
 jobs:
-  sonarqube-analysis:
-    name: SonarQube Analysis
+  sonarqube:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'  # Adjust Python version as needed
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9  # Adjust Python version as needed
 
-      - name: Install SonarScanner
-        run: |
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.1.2563-linux.zip
-          unzip sonar-scanner-cli-4.7.1.2563-linux.zip
-          export PATH="$PATH:$(pwd)/sonar-scanner-4.7.1.2563-linux/bin"
+    - name: Install SonarQube Scanner
+      run: |
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+        unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+        export PATH="$PATH:$(pwd)/sonar-scanner-4.6.2.2472-linux/bin"
+      
+    - name: SonarQube Scan
+      run: |
+        sonar-scanner \
+          -Dsonar.projectKey=your_project_key \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=https://your-sonarqube-url.com \
+          -Dsonar.login=$SONARQUBE_TOKEN  # Set SONARQUBE_TOKEN secret in repository settings
 
-      - name: Run SonarQube Analysis
-        run: sonar-scanner
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
