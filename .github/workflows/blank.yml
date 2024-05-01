@@ -25,4 +25,4 @@ jobs:
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: "squ_426e58261384efd61d923dfc2a711d2f28314fb3"
-        SONAR_HOST_URL: "https://sonarqube.talentsprint.com/"
+        SONAR_HOST_URL: "https://localhost:9099/"
