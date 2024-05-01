@@ -1,4 +1,4 @@
-name: Build and Analyze
+name: SonarQube Analysis
 
 on:
   push:
@@ -6,35 +6,26 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and analyze
+  sonarqube-analysis:
+    name: SonarQube Analysis
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Use v2 of the checkout action
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'  # Use Java 17
-          distribution: 'adopt'  # Specify AdoptOpenJDK distribution
-          java-package: 'jdk'  # Install JDK
-          architecture: 'x64'  # 64-bit architecture
-          check-latest: false  # Skip checking for the latest version
-          server-id: 'github'  # GitHub server ID
-          server-username: ${{ github.actor }}  # Use GitHub actor as server username
-          server-password: ${{ github.token }}  # Use GitHub token as server password
-          overwrite-settings: true  # Overwrite existing Java settings
-          job-status: 'success'  # Run this step only on job success
-      
-      - name: Build with Maven
-        run: mvn clean install  # Adjust the build command for your project
-      
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
+          python-version: '3.x'  # Adjust Python version as needed
+
+      - name: Install SonarScanner
+        run: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.1.2563-linux.zip
+          unzip sonar-scanner-cli-4.7.1.2563-linux.zip
+          export PATH="$PATH:$(pwd)/sonar-scanner-4.7.1.2563-linux/bin"
+
+      - name: Run SonarQube Analysis
+        run: sonar-scanner
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # SonarQube access token
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # SonarQube server URL
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
