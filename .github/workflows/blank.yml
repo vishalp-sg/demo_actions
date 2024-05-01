@@ -19,13 +19,22 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '17'  # Adjust Java version as needed
-
+          java-version: '17'  # Use Java 17
+          distribution: 'adopt'  # Specify AdoptOpenJDK distribution
+          java-package: 'jdk'  # Install JDK
+          architecture: 'x64'  # 64-bit architecture
+          check-latest: false  # Skip checking for the latest version
+          server-id: 'github'  # GitHub server ID
+          server-username: ${{ github.actor }}  # Use GitHub actor as server username
+          server-password: ${{ github.token }}  # Use GitHub token as server password
+          overwrite-settings: true  # Overwrite existing Java settings
+          job-status: 'success'  # Run this step only on job success
+      
       - name: Build with Maven
         run: mvn clean install  # Adjust the build command for your project
       
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # SonarQube access token
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # SonarQube server URL
