@@ -37,7 +37,7 @@ jobs:
     - name: SonarQube Scan
       run: |
         sonar-scanner \
-          -Dsonar.projectKey=github \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=http://localhost:9000 \
-          -Dsonar.login=squ_426e58261384efd61d923dfc2a711d2f28314fb3
+                  -Dsonar.projectKey=vishal \
+                  -Dsonar.sources=. \
+                  -Dsonar.host.url=http://13.201.166.205:9001 \
+                  -Dsonar.login=sqp_cdef52a7a9e2c76571c8e5445978ed1f51470f5c
