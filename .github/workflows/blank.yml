@@ -25,7 +25,7 @@ jobs:
         run: |
           sonar-scanner \
             -Dsonar.projectKey=github \
-            -Dsonar.sources=sonar-scanner.bat -D"sonar.projectKey=github" -D"sonar.sources=D:\talentsprint\custom." -D"sonar.host.url=http://localhost:9099" -D"sonar.token=squ_426e58261384efd61d923dfc2a711d2f28314fb3" -D"sonar.projectBaseDir=D:\talentsprint\custom \
+            -Dsonar.sources=sonar-scanner.bat -D"sonar.projectKey=github" -D"sonar.sources=D:\talentsprint\custom." -D"sonar.host.url=http://localhost:9099" -D"sonar.token=squ_426e58261384efd61d923dfc2a711d2f28314fb3" -D"sonar.projectBaseDir=D:\talentsprint\custom" \
             -Dsonar.host.url=https://localhost:9099 \
             -Dsonar.login=squ_426e58261384efd61d923dfc2a711d2f28314fb3
         env:
