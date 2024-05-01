@@ -31,7 +31,7 @@ jobs:
       run: |
         sonar-scanner \
           -Dsonar.projectKey=github \
-          -Dsonar.sources=. \
+          -Dsonar.sources=scr \
           -Dsonar.host.url=https://sonarqube.talentsprint.com \
           -Dsonar.login=$SONARQUBE_TOKEN  # Set SONARQUBE_TOKEN secret in repository settings
 
