@@ -3,28 +3,30 @@ name: SonarQube Scan
 on:
   push:
     branches:
-      - main  # Adjust branch name as needed
+      - main
   pull_request:
     branches:
-      - main  # Adjust branch name as needed
+      - main
 
 jobs:
   sonarqube:
-    runs-on: ubuntu-latest
-    
+    runs-on: windows-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.10.9  # Updated Python version
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10  # Adjust Python version as needed
 
-    - name: SonarQube Scan
-      run: |
-        sonar-scanner \
-          -Dsonar.projectKey=github \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=https:localhost:9099 \
-          -Dsonar.login=squ_426e58261384efd61d923dfc2a711d2f28314fb3  # Set SONARQUBE_TOKEN secret in repository settings
+      - name: SonarQube Scan
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=github \
+            -Dsonar.sources=D:\talentsprint\custom \
+            -Dsonar.host.url=https://localhost:9099 \
+            -Dsonar.login=squ_426e58261384efd61d923dfc2a711d2f28314fb3
+        env:
+          SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
