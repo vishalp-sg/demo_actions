@@ -39,5 +39,5 @@ jobs:
         sonar-scanner \
                   -Dsonar.projectKey=vishal \
                   -Dsonar.sources=. \
-                  -Dsonar.host.url=http://52.66.244.58:9001 \
+                  -Dsonar.host.url=http://13.233.146.80:9001 \
                   -Dsonar.login=sqp_cdef52a7a9e2c76571c8e5445978ed1f51470f5c
