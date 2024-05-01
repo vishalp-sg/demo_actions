@@ -19,19 +19,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9  # Adjust Python version as needed
+        python-version: 3.10.9  # Updated Python version
 
-    - name: Install SonarQube Scanner
-      run: |
-        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-        unzip sonar-scanner-cli-4.6.2.2472-linux.zip
-        export PATH="$PATH:$(pwd)/sonar-scanner-4.6.2.2472-linux/bin"
-      
     - name: SonarQube Scan
       run: |
         sonar-scanner \
           -Dsonar.projectKey=github \
           -Dsonar.sources=. \
           -Dsonar.host.url=https://sonarqube.talentsprint.com \
-          -Dsonar.login=$SONARQUBE_TOKEN  # Set SONARQUBE_TOKEN secret in repository settings
-
+          -Dsonar.login=squ_426e58261384efd61d923dfc2a711d2f28314fb3  # Set SONARQUBE_TOKEN secret in repository settings
