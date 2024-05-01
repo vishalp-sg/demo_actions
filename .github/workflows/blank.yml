@@ -39,5 +39,5 @@ jobs:
         sonar-scanner \
           -Dsonar.projectKey=github \
           -Dsonar.sources=. \
-          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.host.url=http://localhost:9000 \
           -Dsonar.login=squ_426e58261384efd61d923dfc2a711d2f28314fb3
