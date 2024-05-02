@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_webhook_cohorts_form" model="ir.ui.view">
+            <field name="name">view.webhook.cohorts.form</field>
+            <field name="model">webhook.cohorts</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Copy" type="object" name="execute" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="id" string="Cohorts Request ID" readonly="1"/>
+                            <field name="batchId" string="Batch ID" readonly="1"/>
+                            <field name="method" readonly="1"/>
+                            <field name="request" readonly="1"/>
+                            <field name="status" readonly="1"/>
+                            <field name="is_store" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Response">
+                                <field name="response" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_webhook_cohorts_tree" model="ir.ui.view">
+            <field name="name">view.webhook.cohorts.tree</field>
+            <field name="model">webhook.cohorts</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id"/>
+                    <field name="batchId"/>
+                    <field name="method"/>
+                    <field name="request"/>
+                    <field name="params"/>
+                    <field name="status"/>
+                    <field name="is_store"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="action_webhook_cohorts" model="ir.actions.act_window">
+            <field name="name">Webhook Cohorts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">webhook.cohorts</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Cohorts"
+            id="webhook_cohorts_menu_action"
+            parent="custom_webhook.webhook_main_menu_webhook"
+            action="action_webhook_cohorts"
+            sequence="1"/>
+
+    </data>
+</odoo>

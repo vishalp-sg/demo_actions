@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_cohorts_cohorts,access_cohorts_cohorts,model_cohorts_cohorts,base.group_system,1,1,1,1
+access_cohorts_sku,access_cohorts_sku,model_cohorts_sku,base.group_system,1,1,1,1
+access_cohorts_fees_sku,access_cohorts_fees_sku,model_cohorts_fees_sku,base.group_system,1,1,1,1
+access_student_academic,access_student_academic,model_student_academic,base.group_system,1,1,1,1
+access_student_employer,access_student_employer,model_student_employer,base.group_system,1,1,1,1
